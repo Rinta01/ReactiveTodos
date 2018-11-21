@@ -34,34 +34,21 @@ header h2{
     align-content: center;
     margin: 50px auto 20px;
 }
-.form select {
+.form .select {
     flex-shrink: 0;
-    min-width: 20%;
-    background-color: #e7e7e7;
+    width: 80%;
+    background-color: #adadad;
     border: none;
     border-radius: 10px;
     font: 300 28px 'Ubuntu', 'sans-serif';
     padding: 20px;
-    color: #34495e;
     outline: none;
-    color: #999999
+    transition: all .3s linear;
 }
-.form select option{
-    background-color: #e7e7e7;
-    border:none;
-    border-radius: 10px;
-    font: 300 28px 'Ubuntu', 'sans-serif';
-    padding: 20px;
-    color: #34495e;
-    outline: none;  
-}
-.form select option:hover{
-    background-color: #dbdbdb;
-}
+
 #todoInput{
-    /* max-width: 500px; */
     flex-shrink: 2;
-    width: 73%;
+    width: 80%;
     height: 20px;
     background: none;
     border: none;
@@ -113,4 +100,10 @@ li span:nth-child(2):hover{
 .logo{
     font-size: 23px;
     opacity: .85;
+}
+.dropdown{
+    min-width: 200px;
+}
+.todoList{
+    margin: 20px auto;
 }

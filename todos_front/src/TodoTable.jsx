@@ -11,8 +11,8 @@ class TodoTable extends Component {
             todos: []
         }
         this.addTodo = this.addTodo.bind(this);
-        this.toggleTodo = this.toggleTodo.bind(this);
-        this.deleteTodo = this.deleteTodo.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+        this.onToggle = this.onToggle.bind(this);
     }
     
     componentWillMount(){
@@ -20,19 +20,18 @@ class TodoTable extends Component {
     }
     
     async addTodo(val, label){
-        // console.log('here')
         console.log(label)
         let newTodo = await apiCalls.createTodo(val, label);
         this.setState({todos: [...this.state.todos, newTodo]})
     }
     
-    async deleteTodo(id){
+    async onDelete(id){
         await apiCalls.removeTodo(id);
         const todos = this.state.todos.filter(t => t._id !== id);
         this.setState({todos});
     }
     
-    async toggleTodo(todo){
+    async onToggle(todo){
         let updatedTodo = await apiCalls.updateTodo(todo);
         console.log(updatedTodo)
         const todos = this.state.todos.map(t => 
@@ -52,8 +51,8 @@ class TodoTable extends Component {
                 <ul className="list">
                 <TodoList
                 todos = {this.state.todos}
-                deleteTodo = {this.deleteTodo}
-                toggleTodo = {this.toggleTodo}/>
+                onDelete = {this.onDelete}
+                onToggle = {this.onToggle}/>
                 </ul>
                 </div>
                 );

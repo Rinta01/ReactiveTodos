@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import LabelSelect from './LabelSelect';
 
 class TodoForm extends Component {
   constructor(props){
@@ -17,9 +18,9 @@ class TodoForm extends Component {
       inputVal: e.target.value,
     })
   }
-  handleChangeLabel(e){
+  handleChangeLabel(input){
     this.setState({
-      inputLabel: e.target.value
+      inputLabel: input
     })
   }
   handleSubmit(e){
@@ -32,12 +33,13 @@ class TodoForm extends Component {
   render() {
     return (
       <div className="form">
-      <select onChange={this.handleChangeLabel}>
+      {/* <select onChange={this.handleChangeLabel}>
         <option value="General">General</option>
         <option value="Work">Work</option>
         <option value="Leisure">Leisure</option>
         <option value="Groceries">Groceries</option>
-      </select>
+      </select> */}
+      <LabelSelect onSelect={this.handleChangeLabel}/>
       <input
       id="todoInput"
       type="text"
