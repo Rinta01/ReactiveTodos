@@ -13,17 +13,15 @@ class TodoList extends Component {
         }
         
         organizeTodos(){
-            const todos = this.props.todos;
-            let AllLabels = this.props.todos.map(t=> t.label);
-            const labels = Array.from(new Set(AllLabels));
+            const labels = Array.from(new Set(this.props.todos.map(t=> t.label)));
             const allItems = [];
             labels.forEach((l,i) => {
                 allItems.push(<Label key={i} name={l}/>);
-                todos.forEach(t=>{
+                this.props.todos.forEach(t=>{
                     if(l === t.label)
                     allItems.push(this.createTodo(t))
-                })
-                })
+                });
+                });
             return allItems;            
         }
         
