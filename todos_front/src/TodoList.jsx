@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TodoGroup from './TodoGroup';
 
-class TodoList extends Component {
+const propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
 
-    organizeTodos(){
-        const labels = Array.from(new Set(this.props.todos.map(t=> t.label)));
-        return labels.map((l,i) => {
-            return(<TodoGroup
-                key={i} 
-                label={l}
-                todos = {this.props.todos.filter(t =>l === t.label)}
-                onDelete={this.props.onDelete}
-                onToggle={this.props.onToggle}/>)
-            });
-        }
-        
-        render() {
-            return (
-                <div className="todoList">
-                {this.organizeTodos()}    
-                </div>
-                );
-            }
-            
-        }
-        export default TodoList;
-        
+class TodoList extends Component {
+  organizeTodos() {
+    const { todos, onDelete, onToggle } = this.props;
+    const labels = Array.from(new Set(todos.map(t => t.label)));
+    return labels.map((l, i) => (
+      <TodoGroup
+        // eslint-disable-next-line react/no-array-index-key
+        key={i}
+        label={l}
+        todos={todos.filter(t => l === t.label)}
+        onDelete={onDelete}
+        onToggle={onToggle}
+      />
+    ));
+  }
+
+  render() {
+    return (
+      <div className="todoList">
+        {this.organizeTodos()}
+      </div>
+    );
+  }
+}
+
+TodoList.propTypes = propTypes;
+
+export default TodoList;
